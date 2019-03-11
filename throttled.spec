@@ -3,7 +3,7 @@
 
 Name:     throttled
 Version:  0.5
-Release:  2
+Release:  3
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
@@ -56,6 +56,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-3
+- Fix unit file to use configuration
+
 * Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-2
 - Add default configuration file
 - Fix file permissions

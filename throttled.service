@@ -3,7 +3,7 @@ Description=Stop Intel throttling
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/throttled
+ExecStart=/usr/bin/throttled --config /etc/throttled.conf
 # Setting PYTHONUNBUFFERED is necessary to see the output of this service in the journal
 Environment=PYTHONUNBUFFERED=1
 StandardOutput=syslog
