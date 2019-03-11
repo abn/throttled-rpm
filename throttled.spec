@@ -3,13 +3,14 @@
 
 Name:     throttled
 Version:  0.5
-Release:  1
+Release:  2
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
 Source0:  https://github.com/erpalma/throttled/archive/v%{version}.tar.gz
 Source1:  throttled.service
 
+BuildRequires: python3-devel
 BuildRequires: systemd-units
 
 Requires: python3
@@ -32,8 +33,9 @@ block the Embedded Controller from resetting these values to default.
 %build
 
 %install
-install -D lenovo_fix.py %{buildroot}/%{_bindir}/throttled
+install -D lenovo_fix.py %{buildroot}/%{_bindir}/%{name}
 install -D mmio.py %{buildroot}/%{python3_sitelib}/mmio.py
+install -D etc/lenovo_fix.conf %{buildroot}/%{_sysconfdir}/%{name}.conf
 install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 
 %post
@@ -46,14 +48,18 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %systemd_postun_with_restart %{name}.service
 
 %files
-%defattr(-,root,root)
-%{_bindir}/throttled
-%{python3_sitelib}/mmio.py
-%{python3_sitelib}/__pycache__/*
-%{_unitdir}/%{name}.service
-
+%defattr(-,root,root,-)
+%attr(755, root, root) %{_bindir}/%{name}
+%attr(644, root, root) %{python3_sitelib}/mmio.py
+%attr(644, root, root) %{python3_sitelib}/__pycache__/*
+%config(noreplace) %attr(640, %{name}, %{name}) %{_sysconfdir}/%{name}.conf
+%attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-2
+- Add default configuration file
+- Fix file permissions
+
 * Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-1
 - Initial release of version 0.5
 
