@@ -3,7 +3,7 @@
 
 Name:     throttled
 Version:  0.5
-Release:  3
+Release:  4
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
@@ -17,6 +17,8 @@ Requires: python3
 Requires: python3-gobject
 Requires: python3-configparser
 Requires: systemd
+
+Conflicts: thermald
 
 %description
 This tool was originally developed to fix Linux CPU throttling issues affecting 
@@ -56,6 +58,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-4
+- Add conflict for thermald
+
 * Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-3
 - Fix unit file to use configuration
 
