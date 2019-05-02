@@ -2,8 +2,8 @@
 %define debug_package %{nil}
 
 Name:     throttled
-Version:  0.5
-Release:  4
+Version:  0.6
+Release:  1
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
@@ -58,6 +58,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Thu May 02 2019 Arun Babu Neelicattu <arun.neelicattu@twyla.ai> - 0.6-1
+- Upgrade to 0.6
+
 * Mon Mar 11 2019 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.5-4
 - Add conflict for thermald
 
