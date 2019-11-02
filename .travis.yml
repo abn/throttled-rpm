@@ -9,6 +9,7 @@ env:
   matrix:
     - OS_TYPE=fedora OS_DIST=fedora OS_VERSION=29
     - OS_TYPE=fedora OS_DIST=fedora OS_VERSION=30
+    - OS_TYPE=fedora OS_DIST=fedora OS_VERSION=31
 
 services:
   - docker
