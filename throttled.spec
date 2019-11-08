@@ -3,7 +3,7 @@
 
 Name:     throttled
 Version:  0.6
-Release:  1
+Release:  2
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
@@ -54,10 +54,13 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(755, root, root) %{_bindir}/%{name}
 %attr(644, root, root) %{python3_sitelib}/mmio.py
 %attr(644, root, root) %{python3_sitelib}/__pycache__/*
-%config(noreplace) %attr(640, %{name}, %{name}) %{_sysconfdir}/%{name}.conf
+%config(noreplace) %attr(640, root, root) %{_sysconfdir}/%{name}.conf
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Fri Nov 08 2019 Alan Ivey <alanivey@gmail.com> - 0.6-2
+- Fix file ownership on /etc/throttled.conf
+
 * Thu May 02 2019 Arun Babu Neelicattu <arun.neelicattu@twyla.ai> - 0.6-1
 - Upgrade to 0.6
 
