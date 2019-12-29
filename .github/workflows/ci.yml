@@ -1,0 +1,48 @@
+name: "Build and publish throttled RPM"
+
+on: push
+
+jobs:
+  build:
+    name: "Build and publish RPM"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os_version: [ 31 ]
+        os_type: [ fedora ]
+        arch: [ x86_64 ]
+    container:
+      image: alectolytic/rpmbuilder:${{ matrix.os_type }}-${{ matrix.os_version }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: sources
+      - name: move sources
+        run: |
+          find sources -type f -exec cp '{}' /sources/ ';'
+      - name: create rpmbuild dir
+        run: mkdir -p /github/home/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+      - name: build rpm
+        env:
+          SRPM_ONLY: 1
+        run: /usr/bin/build
+      - name: install deps
+        run: pip install copr-cli simplejson
+      - name: decrypt
+        if: startsWith(github.event.ref, 'refs/tags/')
+        env:
+          COPR_SECRET: ${{ secrets.COPR_SECRET }}
+        run: |
+          mkdir -p $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="$COPR_SECRET" \
+            --output $HOME/secrets/.copr.config /sources/.copr.enc
+      - name: publish
+        if: startsWith(github.event.ref, 'refs/tags/')
+        env:
+          COPR_REPOSITORY: throttled
+          OS_TYPE: ${{ matrix.os_type }}
+          OS_ARCH: ${{ matrix.arch }}
+          OS_VERSION: ${{ matrix.os_version }}
+        run: |
+          copr-cli --config $HOME/secrets/.copr.config build -r ${OS_TYPE}-${OS_VERSION}-${OS_ARCH} \
+            ${COPR_REPOSITORY} /output/*.src.rpm
