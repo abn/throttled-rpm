@@ -44,5 +44,5 @@ jobs:
           OS_ARCH: ${{ matrix.arch }}
           OS_VERSION: ${{ matrix.os_version }}
         run: |
-          copr-cli --config $HOME/secrets/.copr.config build -r ${OS_TYPE}-${OS_VERSION}-${OS_ARCH} \
+          copr-cli --config $HOME/secrets/.copr.config build --nowait -r ${OS_TYPE}-${OS_VERSION}-${OS_ARCH} \
             ${COPR_REPOSITORY} /output/*.src.rpm
