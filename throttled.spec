@@ -2,8 +2,8 @@
 %define debug_package %{nil}
 
 Name:     throttled
-Version:  0.6
-Release:  2
+Version:  0.7
+Release:  1
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
@@ -58,6 +58,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Mar 16 2020 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.7-1
+- Upgrade to 0.7
+
 * Fri Nov 08 2019 Alan Ivey <alanivey@gmail.com> - 0.6-2
 - Fix file ownership on /etc/throttled.conf
 
