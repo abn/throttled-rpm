@@ -28,7 +28,7 @@ jobs:
 
       - name: Set epel chroot (centos)
         if: startsWith(matrix.distro, "centos")
-        shell:
+        shell: bash
         run: echo "CHROOT=${CHROOT/centos/epel}" >> $GITHUB_ENV
 
       - name: Build SRPM
