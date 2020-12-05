@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:     throttled
-Version:  0.7
+Version:  0.8
 Release:  1
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
@@ -58,6 +58,10 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Sat Dec  5 2020 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.8-1
+- Upgrade to 0.8
+- Remove deprecated systemd-unit configuration (https://github.com/erpalma/throttled/pull/212)
+
 * Mon Mar 16 2020 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.7-1
 - Upgrade to 0.7
 
