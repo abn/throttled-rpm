@@ -40,6 +40,7 @@ jobs:
         with:
           name: srpm
           path: "*.src.rpm"
+          if-no-files-found: error
 
       - name: Setup python
         uses: actions/setup-python@v2
