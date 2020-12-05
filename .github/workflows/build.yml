@@ -35,6 +35,12 @@ jobs:
         shell: bash
         run: docker run -v ${PWD}:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${BUILDER_IMAGE}
 
+      - name: Upload SRPM
+        uses: actions/upload-artifact@v2
+        with:
+          name: srpm
+          path: "*.srpm"
+
       - name: Setup python
         uses: actions/setup-python@v2
         if: startsWith(github.ref, 'refs/tags/v')
