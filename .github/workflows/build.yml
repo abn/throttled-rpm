@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set epel chroot (centos)
-        if: startsWith(matrix.distro, "centos")
+        if: startsWith(matrix.distro, 'centos')
         shell: bash
         run: echo "CHROOT=${CHROOT/centos/epel}" >> $GITHUB_ENV
 
@@ -37,10 +37,10 @@ jobs:
 
       - name: Setup python
         uses: actions/setup-python@v2
-        if: startsWith(github.ref, "refs/tags/v")
+        if: startsWith(github.ref, 'refs/tags/v')
 
       - name: Build RPM (copr)
-        if: startsWith(github.ref, "refs/tags/v")
+        if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
         env:
           COPR_CONFIG: ${{ secrets.COPR_CONFIG }}
