@@ -35,8 +35,11 @@ jobs:
         shell: bash
         run: docker run -v ${PWD}:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${BUILDER_IMAGE}
 
-      - name: Build RPM (copr)
+      - name: Setup python
         uses: actions/setup-python@v2
+        if: startsWith(github.ref, "refs/tags/v")
+
+      - name: Build RPM (copr)
         if: startsWith(github.ref, "refs/tags/v")
         shell: bash
         env:
