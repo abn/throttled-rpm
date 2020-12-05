@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: srpm
-          path: "*.srpm"
+          path: "*.src.rpm"
 
       - name: Setup python
         uses: actions/setup-python@v2
