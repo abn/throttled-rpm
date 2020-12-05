@@ -18,8 +18,9 @@ jobs:
           - fedora-32
           - fedora-33
           - centos-8
+        repository: [throttled]
     env:
-      COPR_REPOSITORY: throttled
+      COPR_REPOSITORY: ${{ matrix.repository }}
       BUILDER_IMAGE: quay.io/abn/rpmbuilder:${{ matrix.distro }}
       CHROOT: ${{ matrix.distro }}
       ARCH: x86_64
@@ -38,7 +39,7 @@ jobs:
       - name: Upload SRPM
         uses: actions/upload-artifact@v2
         with:
-          name: srpm
+          name: ${{ matrix.repository }}-${{ matrix.distro }}-srpm
           path: "*.src.rpm"
           if-no-files-found: error
 
