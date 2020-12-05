@@ -1,0 +1,48 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  rpm:
+    name: ${{ matrix.distro }}
+    runs-on: Ubuntu-latest
+    strategy:
+      matrix:
+        distro:
+          - fedora-32
+          - fedora-33
+          - centos-8
+    env:
+      COPR_REPOSITORY: throttled
+      BUILDER_IMAGE: quay.io/abn/rpmbuilder:${{ matrix.distro }}
+      CHROOT: ${{ matrix.distro }}
+      ARCH: x86_64
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set epel chroot (centos)
+        if: startsWith(matrix.distro, "centos")
+        shell:
+        run: echo "CHROOT=${CHROOT/centos/epel}" >> $GITHUB_ENV
+
+      - name: Build SRPM
+        shell: bash
+        run: docker run -v ${PWD}:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${BUILDER_IMAGE}
+
+      - name: Build RPM (copr)
+        uses: actions/setup-python@v2
+        if: startsWith(github.ref, "refs/tags/v")
+        shell: bash
+        env:
+          COPR_CONFIG: ${{ secrets.COPR_CONFIG }}
+        run: |
+          python -m pip install copr-cli simplejson
+          echo "$COPR_CONFIG" > .copr
+          copr-cli --config .copr build -r ${CHROOT}-${ARCH} ${COPR_REPOSITORY} *.src.rpm
+          rm -f .copr
