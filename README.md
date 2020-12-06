@@ -1,4 +1,4 @@
-![Workflow Status](https://github.com/abn/throttled-rpm/workflows/Build/badge.svg?branch=master)
+[![Workflow Status](https://github.com/abn/throttled-rpm/workflows/Build/badge.svg?branch=master)](https://github.com/abn/throttled-rpm/actions?query=workflow%3ABuild+branch%3Amaster)
 [![Copr Build Status](https://copr.fedorainfracloud.org/coprs/abn/throttled/package/throttled/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/abn/throttled/)
 
 # RPM Package: throttled
