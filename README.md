@@ -1,8 +1,23 @@
-[![Travis Build Status](https://travis-ci.org/abn/throttled-rpm.svg?branch=master)](https://travis-ci.org/abn/throttled-rpm) [![Copr Build Status](https://copr.fedorainfracloud.org/coprs/abn/throttled/package/throttled/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/abn/throttled/)
+![Workflow Status](https://github.com/abn/throttled-rpm/workflows/Build/badge.svg?branch=master)
+[![Copr Build Status](https://copr.fedorainfracloud.org/coprs/abn/throttled/package/throttled/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/abn/throttled/)
+
 # RPM Package: throttled
 
 This repository holds the RPM package source for [throttled](https://github.com/erpalma/throttled).
 
-This package is built and hosted using [Travis CI](https://travis-ci.com) and [Fedora Copr](https://copr.fedorainfracloud.org/) as described in the [RPM Build Flow](https://gist.github.com/abn/daf262e7e454509df1429c87068923d1).
+## Usage
+You can use this package by enabling the copr repository at [abn/throttled](https://copr.fedorainfracloud.org/coprs/abn/throttled/) as described [here](https://fedorahosted.org/copr/wiki/HowToEnableRepo).
 
-You can use this package by enabling the copr repository at [abn/throttled](https://copr.fedorainfracloud.org/coprs/abn/throttled/) as described [here](https://gist.github.com/abn/daf262e7e454509df1429c87068923d1#using-packages-in-copr-repository).
+```sh
+dnf copr enable abn/throttled
+dnf copr install throttled
+```
+
+### Activation
+The package also installs a [systemd.unit](https://www.freedesktop.org/software/systemd/man/systemd.unit.html) file. Which can be activated as shown below.
+
+```sh
+systemctl enable --now throttled
+```
+
+> **Note:** The configuration used is installed at /etc/throttled.conf
