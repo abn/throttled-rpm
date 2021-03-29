@@ -19,6 +19,7 @@ jobs:
         distro:
           - fedora-32
           - fedora-33
+          - fedora-34
           - centos-8
         repository: [throttled]
     env:
