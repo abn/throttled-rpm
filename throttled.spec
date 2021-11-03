@@ -2,8 +2,8 @@
 %define debug_package %{nil}
 
 Name:     throttled
-Version:  0.8
-Release:  3
+Version:  0.9.2
+Release:  1
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
 URL:      https://github.com/erpalma/throttled
@@ -57,6 +57,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Wed Nov 03 2021 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.9.2-1
+- Upgrade to 0.9.2
+
 * Mon Mar 29 2021 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.8-3
 - Bump release for new fedora release
 
