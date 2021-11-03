@@ -18,6 +18,7 @@ jobs:
       matrix:
         distro:
           - fedora-34
+          - fedora-35
           - centos-8
         repository: [throttled]
     env:
