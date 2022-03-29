@@ -20,7 +20,7 @@ jobs:
           - fedora-34
           - fedora-35
           - fedora-36
-          - centos-8
+          - rockylinux-8
         repository: [throttled]
     env:
       COPR_REPOSITORY: ${{ matrix.repository }}
@@ -30,8 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set epel chroot (centos)
-        if: startsWith(matrix.distro, 'centos')
+      - name: Set epel chroot (rockylinux)
+        if: startsWith(matrix.distro, 'rockylinux')
         shell: bash
         run: echo "CHROOT=${CHROOT/centos/epel}" >> $GITHUB_ENV
 
