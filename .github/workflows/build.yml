@@ -33,7 +33,7 @@ jobs:
       - name: Set epel chroot (rockylinux)
         if: startsWith(matrix.distro, 'rockylinux')
         shell: bash
-        run: echo "CHROOT=${CHROOT/centos/epel}" >> $GITHUB_ENV
+        run: echo "CHROOT=${CHROOT/rockylinux/epel}" >> $GITHUB_ENV
 
       - name: Build srpm and rpm
         shell: bash
