@@ -60,7 +60,7 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 
 %changelog
 * Tue Jan 10 2023 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.10.0-1
-- Upgrade to 0.10.2
+- Upgrade to 0.10.0
 - Add python3-dbus requirement
 - Update source script name from lenovo_fix.py to throttled.py
 - Update source config name from lenovo_fix.py to throttled.conf
