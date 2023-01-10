@@ -15,6 +15,7 @@ BuildRequires: systemd-units
 
 Requires: python3
 Requires: python3-gobject
+Requires: python3-dbus
 Requires: systemd
 Requires: pciutils
 
@@ -35,9 +36,9 @@ block the Embedded Controller from resetting these values to default.
 %build
 
 %install
-install -D lenovo_fix.py %{buildroot}/%{_bindir}/%{name}
+install -D throttled.py %{buildroot}/%{_bindir}/%{name}
 install -D mmio.py %{buildroot}/%{python3_sitelib}/mmio.py
-install -D etc/lenovo_fix.conf %{buildroot}/%{_sysconfdir}/%{name}.conf
+install -D etc/throttled.conf %{buildroot}/%{_sysconfdir}/%{name}.conf
 install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 
 %post
@@ -60,6 +61,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %changelog
 * Tue Jan 10 2023 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.10.0-1
 - Upgrade to 0.10.2
+- Add python3-dbus requirement
+- Update source script name from lenovo_fix.py to throttled.py
+- Update source config name from lenovo_fix.py to throttled.conf
 
 * Wed Nov 03 2021 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.9.2-1
 - Upgrade to 0.9.2
