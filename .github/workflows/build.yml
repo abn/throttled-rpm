@@ -19,7 +19,9 @@ jobs:
         distro:
           - fedora-38
           - fedora-39
+          - fedora-39
           - rockylinux-8
+          - rockylinux-9
         repository: [throttled]
     env:
       COPR_REPOSITORY: ${{ matrix.repository }}
