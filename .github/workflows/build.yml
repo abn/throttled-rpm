@@ -17,7 +17,6 @@ jobs:
     strategy:
       matrix:
         distro:
-          - fedora-37
           - fedora-38
           - fedora-39
           - rockylinux-8
