@@ -17,9 +17,9 @@ jobs:
     strategy:
       matrix:
         distro:
-          - fedora-38
           - fedora-39
           - fedora-40
+          - fedora-41
           - rockylinux-8
           - rockylinux-9
         repository: [throttled]
