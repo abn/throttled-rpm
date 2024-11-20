@@ -48,7 +48,7 @@ jobs:
           if-no-files-found: error
 
       - name: Setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         if: startsWith(github.ref, 'refs/tags/v')
 
       - name: Build rpm (copr)
