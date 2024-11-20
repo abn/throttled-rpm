@@ -41,7 +41,7 @@ jobs:
         run: docker run -v ${PWD}:/sources -v ${PWD}:/output:Z ${BUILDER_IMAGE}
 
       - name: Upload srpm and rpm
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.repository }}-${{ matrix.distro }}
           path: "*.rpm"
