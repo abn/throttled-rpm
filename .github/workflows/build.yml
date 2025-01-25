@@ -17,7 +17,6 @@ jobs:
     strategy:
       matrix:
         distro:
-          - fedora-39
           - fedora-40
           - fedora-41
           - fedora-rawhide
