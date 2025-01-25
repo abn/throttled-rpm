@@ -20,6 +20,7 @@ jobs:
           - fedora-39
           - fedora-40
           - fedora-41
+          - fedora-rawhide
           - rockylinux-8
           - rockylinux-9
         repository: [throttled]
