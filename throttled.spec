@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:     throttled
-Version:  0.10.0
+Version:  0.11
 Release:  1
 Summary:  Workaround for Intel throttling issues in Linux
 License:  MIT
@@ -59,6 +59,9 @@ install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 %attr(644, root, root) %{_unitdir}/%{name}.service
 
 %changelog
+* Sat Jan 25 2025 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.11-1
+- Upgrade to 0.11 (pre-release)
+
 * Tue Jan 10 2023 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 0.10.0-1
 - Upgrade to 0.10.0
 - Add python3-dbus requirement
