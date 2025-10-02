@@ -17,11 +17,13 @@ jobs:
     strategy:
       matrix:
         distro:
-          - fedora-40
           - fedora-41
+          - fedora-42
+          - fedora-43
           - fedora-rawhide
           - rockylinux-8
           - rockylinux-9
+          - rockylinux-10
         repository: [throttled]
     env:
       COPR_REPOSITORY: ${{ matrix.repository }}
